@@ -1,7 +1,8 @@
 import React from 'react'
 import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider, Router } from 'react-router-dom'
 import AuthPage from './pages/AuthPage'
-import HomePage from './pages/HomePage'
+import AppPage from './pages/AppPage'
+import MainLayout from './layout/mainLayout'
 
 
 const App = () => {
@@ -10,7 +11,10 @@ const App = () => {
     <>
       {/* No layout — auth page standalone */}
       <Route path='/' element={<AuthPage />} />
-      <Route path='/home' element={<HomePage/>} />
+
+      <Route element={<MainLayout/>}>
+        <Route path='/home' element={<AppPage />} />
+      </Route>
     </>
   )
 

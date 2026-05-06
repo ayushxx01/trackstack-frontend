@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useState } from 'react'
 import { register } from '../services/AuthService'
+import { toast } from 'react-toastify'
 
 const RegisterComp = () => {
   const [formData, setFormData] = useState({
@@ -10,9 +11,17 @@ const RegisterComp = () => {
     password: ''
   })
 
- const onSubmitForm = (e) => {
+ const onSubmitForm = async (e) => {
     e.preventDefault();
-    register(formData.username, formData.email, formData.password);
+    try {
+      await register(formData.username, formData.email, formData.password);
+      toast.success('Registration successful! Please login to continue.');
+    }
+    catch(err){
+      console.error(err);
+      toast.error('Registration failed. Please try again.');
+    }
+    
   }
 
   return (
