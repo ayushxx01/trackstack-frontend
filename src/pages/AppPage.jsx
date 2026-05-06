@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { getApps } from '../services/AppService'
+import { deleteApp, getApps } from '../services/AppService'
 import CreateApp from '../components/CreateApp';
 import StatusApp from '../components/StatusApp';
 import AppList from '../components/AppList';
+import { toast } from 'react-toastify';
 const AppPage = () => {
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteApp(id);
+      setApplications((prev)=> prev.filter(app=> app._id !== id));
+      if(res){
+          toast.success('Application deleted successfully!');
+      }
+  }
+  catch(err){
+      console.error(err);
+      toast.error('Failed to delete application.');
+    }
+  }
   const[applications, setApplications] = useState([]);
   useEffect(() => {
     const load = async () => {
@@ -24,7 +38,7 @@ const AppPage = () => {
     </div>
   </div>
   <div className="grid grid-cols-2">
-    <AppList applications = {applications}/>
+    <AppList applications = {applications} onDelete={handleDelete}/>
   </div>
    </>
   )
