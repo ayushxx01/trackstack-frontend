@@ -5,6 +5,17 @@ import StatusApp from '../components/StatusApp';
 import AppList from '../components/AppList';
 import { toast } from 'react-toastify';
 const AppPage = () => {
+
+  const handleRefresh = async () => {
+    try {
+      const res = await getApps();
+      setApplications(res.data);
+    }
+    catch(err){
+      console.error(err);
+      toast.error('Failed to refresh applications.');
+    }
+  }
   const handleDelete = async (id) => {
     try {
       const res = await deleteApp(id);
@@ -31,7 +42,7 @@ const AppPage = () => {
    <>
   <div className="flex gap-6">
     <div className="flex-1">
-      <CreateApp/>
+      <CreateApp applications={applications} onAdd={handleRefresh}/>
     </div>
     <div className="w-72">
       <StatusApp/>

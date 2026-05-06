@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { createApp } from '../services/AppService';
 import { toast } from 'react-toastify';
-const CreateApp = () => {
+const CreateApp = ({ applications, onAdd }) => {
   const [companyName, setCompanyName] = useState('');
   const [position, setPosition] = useState('');
   const [status, setStatus] = useState('');
@@ -43,6 +43,7 @@ const CreateApp = () => {
     if(result){
       toast.success('Application created successfully!');
       resetForm();
+      onAdd();
     }
   }
   
