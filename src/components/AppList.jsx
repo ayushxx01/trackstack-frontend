@@ -1,16 +1,18 @@
 import React from 'react'
 import AppCard from './AppCard'
 
-const AppList = ({applications, onDelete}) => {
-  if(applications.length === 0) {
-    return <div className='text-center text-gray-500'>No applications found. Create one to get started!</div>
-  }
+const AppList = ({applications}) => {
+  if(applications.length === 0)return (
+    <div>No Applications yet</div>
+  )
 
-  else return (
+  return (
     <>
-      {applications.map(app=> (
-        <AppCard key={app._id} app={app} onDelete={onDelete}/>
-      ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {applications.map(app=> (
+                <AppCard key={app._id} app={app}/>
+            ))}
+        </div>
     </>
   )
 }
