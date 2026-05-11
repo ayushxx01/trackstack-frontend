@@ -1,7 +1,7 @@
 import React from 'react'
 import AppCard from './AppCard'
 
-const AppList = ({applications, deleteHandler}) => {
+const AppList = ({applications, deleteHandler, onEdit}) => {
   if(!applications || applications.length === 0)return (
     <div>No Applications yet</div>
   )
@@ -10,7 +10,7 @@ const AppList = ({applications, deleteHandler}) => {
     <>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {applications.map(app=> (
-                <AppCard key={app._id} app={app} deleteHandler={deleteHandler}/>
+                <AppCard key={app._id} app={app} deleteHandler={deleteHandler} onEdit={onEdit} />
             ))}
         </div>
     </>

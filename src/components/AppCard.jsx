@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AppCard = ({ app, deleteHandler }) => {
+const AppCard = ({ app, deleteHandler , onEdit}) => {
   return (
     <div className='bg-gray-900 rounded-xl p-4 flex flex-col gap-2'>
       <h2 className='text-white font-bold text-lg'>{app.companyName}</h2>
@@ -21,7 +21,8 @@ const AppCard = ({ app, deleteHandler }) => {
         </a>
       )}
       <div className='flex gap-2 mt-2'>
-        <button className='bg-yellow-500 text-black text-xs px-3 py-1 rounded'>Edit</button>
+        //passing the whole application to edit page so that we can repopulate the form with existing data
+        <button onClick={() => onEdit(app)} className='bg-yellow-500 text-black text-xs px-3 py-1 rounded'>Edit</button>
         <button className='bg-red-500 text-white text-xs px-3 py-1 rounded' onClick={() => deleteHandler(app._id)}>Delete</button>
       </div>
     </div>

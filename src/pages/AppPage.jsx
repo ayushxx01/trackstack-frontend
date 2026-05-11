@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import StatusComp from '../components/StatusComp'
 import CreateApp from '../components/CreateApp'
 import AppList from '../components/AppList'
-import { deleteApp, getApps } from '../services/AppService'
+import { deleteApp, getApps, updateApp } from '../services/AppService'
+import EditCard from '../components/EditCard'
 
 const AppPage = () => {
     const[applications, setApplications] = useState();
@@ -52,8 +53,17 @@ const deleteHandler = async (id) => {
     <StatusComp></StatusComp>
   </div>
   <div className="">
-    <AppList applications={applications} deleteHandler={deleteHandler}/>
+    <AppList applications={applications} deleteHandler={deleteHandler} onEdit={handleEdit}/>
   </div>
+      {editApplication && (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <EditCard
+          app={editApplication}
+          onUpdate={handleUpdate}
+          onClose={() => setEditApplication(null)}
+        />
+      </div>
+    )}
   </>
   )
 }
