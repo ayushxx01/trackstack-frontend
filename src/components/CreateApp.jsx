@@ -9,7 +9,7 @@ const CreateApp = () => {
         position: '',
         status: 'Applied',
         coldMailStatus: 'Not Sent',
-        location: '',
+        location: 'remote',
         appliedDate: '',
         deadlineDate: '',
         jobLink: '',
