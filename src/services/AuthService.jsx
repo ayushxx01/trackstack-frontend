@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const base = '/api/users'
+
 export const login = async (email,password)=> {
 
     try {
@@ -40,4 +43,9 @@ export const register = async (username,email,password) => {
     catch(err){
         console.error(err);
     }
+}
+
+export const logOut = () => {
+    localStorage.removeItem('token')
+    
 }

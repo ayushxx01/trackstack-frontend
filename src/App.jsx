@@ -3,6 +3,8 @@ import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider, R
 import AuthPage from './pages/AuthPage'
 import AppPage from './pages/AppPage'
 import MainLayout from './layout/mainLayout'
+import AppListPage from './pages/AppListPage'
+import ColdMailPage from './pages/ColdMailPage'
 
 
 const App = () => {
@@ -14,6 +16,8 @@ const App = () => {
 
       <Route element={<MainLayout/>}>
         <Route path='/home' element={<AppPage />} />
+        <Route path='/apps' element={<AppListPage />} />
+        <Route path='/cold-mail' element={<ColdMailPage />} />
       </Route>
     </>
   )

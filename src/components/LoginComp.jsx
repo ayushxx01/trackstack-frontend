@@ -18,7 +18,10 @@ const LoginComp = ({}) => {
       alert(res.message);
     }
     else{
+      console.log("setting token")
       localStorage.setItem('token',res.token);
+      console.log('login response:', res);
+      console.log('token stored:', localStorage.getItem('token'));
       navigate('/home');
     }
   }

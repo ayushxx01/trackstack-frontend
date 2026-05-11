@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { createApp } from '../services/AppService';
+import { useNavigate } from 'react-router-dom';
 
-const CreateApp = ({ onAdd }) => {
+const CreateApp = () => {
 
     const [formData, setFormData] = useState({
         companyName: '',
@@ -14,12 +15,12 @@ const CreateApp = ({ onAdd }) => {
         jobLink: '',
         notes: ''
     });
-
+       const navigate = useNavigate();
     const onSubmit = async (e) => {
  e.preventDefault()
   const res = await createApp(formData)
-  console.log('create response:', res)  // what comes back?
-  onAdd(res)
+  console.log('create response:', res)  // what comes back?onAdd(res)
+  navigate('/apps');
     };
 
     return (

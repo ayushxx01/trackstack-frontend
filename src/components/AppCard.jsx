@@ -21,7 +21,7 @@ const AppCard = ({ app, deleteHandler , onEdit}) => {
         </a>
       )}
       <div className='flex gap-2 mt-2'>
-        //passing the whole application to edit page so that we can repopulate the form with existing data
+        {/* //passing the whole application to edit page so that we can repopulate the form with existing data */}
         <button onClick={() => onEdit(app)} className='bg-yellow-500 text-black text-xs px-3 py-1 rounded'>Edit</button>
         <button className='bg-red-500 text-white text-xs px-3 py-1 rounded' onClick={() => deleteHandler(app._id)}>Delete</button>
       </div>

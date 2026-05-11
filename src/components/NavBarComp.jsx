@@ -1,6 +1,10 @@
 import React from 'react'
    import { Briefcase, Mail, User, LogOut } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
+import { logOut } from '../services/AuthService';
 const NavBarComp = () => {
+  const navigate = useNavigate();
+ 
   return (
    <>
     <header className="sticky top-0 z-40 w-full border-b bg-white">
@@ -8,14 +12,15 @@ const NavBarComp = () => {
 
         {/* Left: Brand */}
         <div className="text-lg font-semibold">
-          TrackStack
+         <a href="/home">
+          TrackStack</a>
         </div>
 
         {/* Right: Nav Items */}
         <nav className="flex items-center gap-4">
 
           <a
-            href="/"
+            href="/apps"
             className="flex items-center gap-2 text-sm text-gray-600 hover:text-black"
           >
             <Briefcase className="h-4 w-4" />
@@ -30,7 +35,10 @@ const NavBarComp = () => {
             Cold Mails
           </a>
 
-          <button
+          <button onClick={async () => {
+            await logOut();
+            navigate('/');
+          }}
             className="flex items-center gap-2 text-sm text-red-500 hover:text-red-600"
           >
             <LogOut className="h-4 w-4" />
