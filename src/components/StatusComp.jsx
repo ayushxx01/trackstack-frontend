@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getStats } from '../services/StatService'
+import StatusPie from './StatusPie'
+import LocationPie from './LocationPie'
 
 
 const StatusComp = () => {
@@ -25,18 +27,16 @@ const StatusComp = () => {
 
       <div>
         <p className='text-gray-400 text-sm mb-1'>By Status:</p>
-        {Object.entries(stats.byStatus).map(([status, count]) => (
-          <p key={status} className='text-white text-sm'>
-            {status}: {count}
-          </p>
-        ))}
+        <StatusPie byStatus={stats.byStatus} />
+      </div>
+
+      <div>
 
         <p className='text-gray-400 text-sm mb-1'>By Locations:</p>
-        {Object.entries(stats.byLocation).map(([loc, count]) => (
-          <p key={loc} className='text-white text-sm'>
-            {loc}: {count}
-          </p>
-        ))}
+        <LocationPie byLocation={stats.byLocation} />
+      </div>
+      <div>
+
       </div>
 
     </div>
