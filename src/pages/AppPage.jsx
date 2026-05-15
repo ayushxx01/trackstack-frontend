@@ -3,7 +3,7 @@ import StatusComp from '../components/StatusComp'
 import CreateApp from '../components/CreateApp'
 import AppList from '../components/AppList'
 import { deleteApp, getApps, updateApp } from '../services/AppService'
-import EditCard from '../components/EditCard'
+
 
 
 const AppPage = () => {

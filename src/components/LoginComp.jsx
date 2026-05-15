@@ -14,16 +14,16 @@ const LoginComp = ({}) => {
 
     const res = await login(email,password);
 
-    if(!res.token){
-      alert(res.message);
+    if (!res || !res.token) {
+      alert(res?.message || 'Login failed. Please check your credentials and try again.');
+      return;
     }
-    else{
-      console.log("setting token")
-      localStorage.setItem('token',res.token);
-      console.log('login response:', res);
-      console.log('token stored:', localStorage.getItem('token'));
-      navigate('/home');
-    }
+
+    console.log("setting token")
+    localStorage.setItem('token',res.token);
+    console.log('login response:', res);
+    console.log('token stored:', localStorage.getItem('token'));
+    navigate('/home');
   }
   return (
     <form onSubmit= {onSubmitForm} className='flex flex-col gap-4'>

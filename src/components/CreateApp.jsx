@@ -85,23 +85,6 @@ const CreateApp = () => {
                     <option>Accepted</option>
                 </select>
 
-                {/* Cold Mail Status */}
-                <select
-                    name='coldMailStatus'
-                    className='bg-gray-800 text-white px-4 py-3 rounded-lg outline-none'
-                    value={formData.coldMailStatus}
-                    onChange={(e) =>
-                        setFormData({
-                            ...formData,
-                            coldMailStatus: e.target.value
-                        })
-                    }
-                >
-                    <option>Not Sent</option>
-                    <option>Sent</option>
-                    <option>Replied</option>
-                </select>
-
                 {/* Location */}
                 <input
                     type='text'

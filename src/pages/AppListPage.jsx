@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import AppList from '../components/AppList'
 import { deleteApp, getApps, updateApp } from '../services/AppService';
-import EditCard from '../components/EditCard';
+
 
 const AppListPage = () => {
     const[applications, setApplications] = useState();
-       const [editApplication, setEditApplication] = useState(null)
-
-       const handleEdit = (app) => {
-  setEditApplication(app)  // store the app to edit
-}
 
 // handler 2 — save the update
-const handleUpdate = async (updatedApp) => {
-  const res = await updateApp(updatedApp._id, updatedApp)
+const handleUpdate =(updatedApp) => {
+ 
   setApplications(prev => prev.map(app => 
-    app._id === res._id ? res : app
+    app._id === updatedApp._id ? updatedApp : app
   ))
-  setEditApplication(null)  // close edit form
+ // close edit form
 }
 const deleteHandler = async (id) => {
   console.log('id to delete:', id)
@@ -39,17 +34,9 @@ const deleteHandler = async (id) => {
   return (
     <>
      <div className="">
-    <AppList applications={applications} deleteHandler={deleteHandler} onEdit={handleEdit}/>
+    <AppList applications={applications} deleteHandler={deleteHandler} onEdit={handleUpdate}/>
   </div>
-      {editApplication && (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <EditCard
-          app={editApplication}
-          onUpdate={handleUpdate}
-          onClose={() => setEditApplication(null)}
-        />
-      </div>
-    )}</>
+      </>
   )
 }
 
