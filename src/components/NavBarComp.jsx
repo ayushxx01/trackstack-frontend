@@ -1,55 +1,68 @@
-import React from 'react'
-   import { Briefcase, Mail, User, LogOut } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
-import { logOut } from '../services/AuthService';
+import React from "react";
+import { Briefcase, Mail, Search, User, LogOut } from "lucide-react";
+import { useNavigate, NavLink } from "react-router-dom";
+import { logOut } from "../services/AuthService";
+
 const NavBarComp = () => {
   const navigate = useNavigate();
- 
+
   return (
-   <>
-    <header className="sticky top-0 z-40 w-full border-b bg-white">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
 
-        {/* Left: Brand */}
-        <div className="text-lg font-semibold">
-         <a href="/home">
-          TrackStack</a>
-        </div>
+        {/* Logo */}
+        <a
+          href="/home"
+          className="flex items-center gap-2 text-2xl font-bold text-indigo-700"
+        >
+          <Briefcase className="h-5 w-5" />
+          <span>TrackStack</span>
+        </a>
 
-        {/* Right: Nav Items */}
-        <nav className="flex items-center gap-4">
+        {/* Nav Links */}
+        <nav className="flex items-center gap-8 text-sm font-medium">
 
-          <a
-            href="/apps"
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-black"
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              `relative transition ${
+                isActive
+                  ? "text-indigo-700"
+                  : "text-gray-600 hover:text-black"
+              }`
+            }
           >
-            <Briefcase className="h-4 w-4" />
-            Applications
-          </a>
+            {({ isActive }) => (
+              <>
+                Applications
+                {isActive && (
+                  <span className="absolute -bottom-[21px] left-0 h-[2px] w-full bg-indigo-700" />
+                )}
+              </>
+            )}
+          </NavLink>
 
-          <a
-            href="/cold-mail"
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-black"
-          >
-            <Mail className="h-4 w-4" />
-            Cold Mails
-          </a>
 
-          <button onClick={async () => {
-            await logOut();
-            navigate('/');
-          }}
-            className="flex items-center gap-2 text-sm text-red-500 hover:text-red-600"
+        
+
+         
+          {/* Divider */}
+          <div className="h-6 w-px bg-gray-300" />
+
+          {/* Logout */}
+          <button
+            onClick={async () => {
+              await logOut();
+              navigate("/");
+            }}
+            className="font-semibold text-gray-700 transition hover:text-red-500"
           >
-            <LogOut className="h-4 w-4" />
             Logout
           </button>
-
         </nav>
       </div>
     </header>
-   </>
-  )
-}
+  );
+};
 
-export default NavBarComp
+export default NavBarComp;
