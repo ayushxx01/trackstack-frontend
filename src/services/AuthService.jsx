@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-
-const base = '/api/users'
+const API = import.meta.env.VITE_API_URL;
+const base = `${API}/api/users`
 
 export const login = async (email,password)=> {
 
