@@ -28,10 +28,7 @@ const AuthPage = () => {
               </h1>
             </div>
 
-            <h2 className="mt-10 text-center text-5xl font-bold text-gray-900">
-              Welcome back
-            </h2>
-
+          
             <p className="mt-4 text-center text-xl text-gray-500">
               Stay on track with your career journey.
             </p>
@@ -41,7 +38,7 @@ const AuthPage = () => {
           <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-200">
 
             {/* Tabs */}
-            <div className="mb-10 flex border-b border-gray-200">
+            <div className="mb-10 flex border-b border-gray-100 ">
 
               <button
                 onClick={() => setIsLogin(true)}
@@ -60,7 +57,7 @@ const AuthPage = () => {
 
               <button
                 onClick={() => setIsLogin(false)}
-                className={`relative ml-8 pb-4 text-lg font-semibold transition ${
+                className={`relative ml-50 pb-4 text-lg font-semibold transition ${
                   !isLogin
                     ? "text-indigo-700"
                     : "text-gray-500 hover:text-black"
@@ -81,22 +78,7 @@ const AuthPage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8">
-
-        <div className="flex items-center justify-center gap-8 text-sm font-medium text-gray-600">
-          <button className="hover:text-black">
-            Terms of Service
-          </button>
-
-          <button className="hover:text-black">
-            Privacy Policy
-          </button>
-        </div>
-
-        <p className="mt-6 text-center text-sm text-gray-500">
-          © 2024 TrackStack Productivity Inc.
-        </p>
-      </footer>
+    
     </div>
   );
 };
