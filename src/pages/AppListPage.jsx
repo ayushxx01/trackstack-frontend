@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import AppList from '../components/AppList'
 import { deleteApp, getApps, updateApp } from '../services/AppService';
+import Filtering from '../components/Filtering';
 
 
 const AppListPage = () => {
-    const[applications, setApplications] = useState();
+    const[applications, setApplications] = useState([]);
+    const[statusFilter, setStatusFilter] = useState('')
+    const[search, setSearch] = useState('')
+
+
+    const filteredApps = applications.filter(app=> {
+      const matchesSearch = app.companyName.toLowerCase().includes(search.toLowerCase());
+      const status = statusFilter ? app.status === statusFilter : true;
+      return matchesSearch && status;
+    }) || [];
+
 
 // handler 2 — save the update
 const handleUpdate =(updatedApp) => {
@@ -33,9 +44,15 @@ const deleteHandler = async (id) => {
     },[])
   return (
     <>
-     <div className="">
-    <AppList applications={applications} deleteHandler={deleteHandler} onEdit={handleUpdate}/>
-  </div>
+    <Filtering 
+      search={search}
+      setSearch={setSearch}
+      statusFilter={statusFilter}
+      setStatusFilter={setStatusFilter}
+    />
+    <div className="">
+      <AppList applications={filteredApps} deleteHandler={deleteHandler} onEdit={handleUpdate}/>
+    </div>
       </>
   )
 }
