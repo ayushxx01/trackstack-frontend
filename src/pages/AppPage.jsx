@@ -18,13 +18,21 @@ const AppPage = () => {
         return matchesSearch && status;
       }) || [];
   
-  
+  const byStatus = applications.reduce((acc, app) => {
+  acc[app.status] = (acc[app.status] || 0) + 1;
+  return acc;
+}, {});
+const byLocation = applications.reduce((acc, app) => {
+  acc[app.location] = (acc[app.location] || 0) + 1;
+  return acc;
+}, {});
   // handler 2 — save the update
   const handleUpdate =(updatedApp) => {
    
     setApplications(prev => prev.map(app => 
       app._id === updatedApp._id ? updatedApp : app
     ))
+    
    // close edit form
   }
   const deleteHandler = async (id) => {
@@ -45,13 +53,31 @@ const AppPage = () => {
         load();
       },[])
   const navigate = useNavigate();
+  const totalApps = applications.length;
   return (
   <>
-  <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
 
+  
+  <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 mx-5 my-5 " >
+    
   {/* LEFT SIDE */}
   <div className="lg:col-span-2 space-y-6">
 <>
+<div className="flex flex-row justify-between" >
+  <h1 className='text-3xl font-bold text-gray-900'>Application Manager</h1>
+<button onClick={() => navigate('/create')} className="font-semibold text-indigo-700 transition hover:bg-gray-100">
+        Submit New Application
+      </button>
+</div>
+  <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <h3 className="text-sm font-bold uppercase tracking-wide text-gray-500">
+      Total Apps
+    </h3>
+
+    <p className="mt-4 text-5xl font-bold text-indigo-700">
+      {totalApps}
+    </p>
+  </div>
     <Filtering
       search={search}
       setSearch={setSearch}
@@ -66,17 +92,8 @@ const AppPage = () => {
 
   {/* RIGHT SIDE */}
   <div className="space-y-6">
-<button onClick={() => navigate('/create')} className="mt-6 w-full rounded-xl bg-white py-3 font-semibold text-indigo-700 transition hover:bg-gray-100">
-        Submit New Application
-      </button>
-   <StatusComp/>
 
-      {/* Progress */}
-      <div className="mt-5 h-3 overflow-hidden rounded-full bg-indigo-400">
-        <div className="h-full w-[80%] rounded-full bg-white" />
-      </div>
-
-      
+   <StatusComp byStatus={byStatus} byLocation={byLocation}/> 
     </div>
   </div>
 

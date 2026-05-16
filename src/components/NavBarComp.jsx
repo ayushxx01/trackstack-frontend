@@ -8,14 +8,14 @@ const NavBarComp = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+      <div className="flex h-16 items-center justify-between px-8 lg:px-5">
 
         {/* Logo */}
         <a
           href="/home"
-          className="flex items-center gap-2 text-2xl font-bold text-indigo-700"
+          className="text-2xl font-bold text-indigo-700"
         >
-          <Briefcase className="h-5 w-5" />
+        
           <span>TrackStack</span>
         </a>
 
