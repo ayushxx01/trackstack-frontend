@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import { register } from '../services/AuthService'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterComp = () => {
   const [formData, setFormData] = useState({
@@ -10,12 +11,18 @@ const RegisterComp = () => {
     email: '',
     password: ''
   })
-
+const navigate = useNavigate();
  const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      await register(formData.username, formData.email, formData.password);
-      toast.success('Registration successful! Please login to continue.');
+      const res = await register(formData.username, formData.email, formData.password);
+      toast.success('Registration successful!)');
+
+      if(res.token){
+        localStorage.setItem('token', res.token);
+          
+        navigate('/home')
+      }
     }
     catch(err){
       console.error(err);

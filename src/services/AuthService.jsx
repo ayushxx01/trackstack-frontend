@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-const API = import.meta.env.VITE_API_URL;
-const base = `${API}/api/users`
+const base = `/api/users`
 
 export const login = async (email,password)=> {
 
@@ -38,7 +37,13 @@ export const register = async (username,email,password) => {
             })
         })
 
-        return res.json();
+        if(res.token){
+            localStorage.setItem('token', res.token);
+            
+        }
+        else{
+            console.error('Registration failed:', res);
+        }
     }
     catch(err){
         console.error(err);
