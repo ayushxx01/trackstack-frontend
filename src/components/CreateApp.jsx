@@ -114,8 +114,7 @@ const CreateApp = () => {
             />
           </div>
 
-          {/* Location Type */}
-          // Replace your current "Location Type" section with this
+      
 
 <div>
   <label className="mb-2 block text-sm font-semibold text-gray-700">
@@ -192,7 +191,7 @@ const CreateApp = () => {
               />
             </div>
           </div>
-          // Add this BELOW "Date Applied"
+
 
 <div>
   <label className="mb-2 block text-sm font-semibold text-gray-700">
